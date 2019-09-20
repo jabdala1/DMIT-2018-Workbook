@@ -8,5 +8,9 @@ namespace WestWindSystem
 {
     public class Class1
     {
+        // Notes
+        // Item - One-way bind, means to read and display
+        // BindItem - Two-way bind, means to read and write
+
     }
 }
