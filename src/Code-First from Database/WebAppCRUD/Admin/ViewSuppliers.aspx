@@ -6,18 +6,34 @@
     <asp:ListView ID="SupplierListView" runat="server"
         DataSourceID="SupplierDateSource" ItemType="WestWindSystem.Entities.Supplier">
         <LayoutTemplate>
-            <blockquote>
-                <div id="itemPlaceholder" runat="server"></div>
-            </blockquote>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Supplier ID</th>
+                        <th>Company Name</th>
+                        <th>Contact </th>
+                        <th>Address</th>
+                        <th>Phone / Fax</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="itemPlaceholder" runat="server"></tr>
+                </tbody>
+            </table>
         </LayoutTemplate>
 
         <ItemTemplate>
-            <div>
-                <b><%# Item.CompanyName %></b>
-                &ndash;
-                <i><%# Item.ContactName %></i>
-                (<%# Item.ContactTitle %> - <%# Item.Phone %>)
-            </div>
+            <tr>
+                <td><%# Item.SupplierID %></td>
+                <td><%# Item.CompanyName %></td>
+                <td><%# Item.ContactName %>
+                    &ndash;
+                    <%# Item.ContactTitle %>
+                    <br />
+                    <%# Item.Email %></td>
+                <td><%# Item.Address.City %></td>
+                <td><%# Item.Phone %> <br /> <%# Item.Fax %></td>
+            </tr>
         </ItemTemplate>
     </asp:ListView>
 
