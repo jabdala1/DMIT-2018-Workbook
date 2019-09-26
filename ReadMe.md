@@ -69,3 +69,7 @@ Custom badges for indicating documentation status and code status are generated 
 > ![Code](https://img.shields.io/badge/Code%20Status-Demo%20|%20Practice-blueviolet?logo=Visual%20Studio%20Code&labelColor=indigo)
 >
 > ![Docs](https://img.shields.io/badge/Documentation%20Status-~70--90%25-green)
+
+### Tips
+
+- To reinstall packages, run 'update-package -r' in NuGet packgae manager console.
