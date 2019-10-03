@@ -93,7 +93,7 @@ namespace WestWindSystem.BLL
         {
             using (var context = new WestWindContext())
             {
-                context.Address.Add(item);
+                context.Addresses.Add(item);
                 context.SaveChanges();
             }
         }
@@ -114,7 +114,7 @@ namespace WestWindSystem.BLL
         {
             using (var context = new WestWindContext())
             {
-                var existing = context.Address.Find(item.AddressID);
+                var existing = context.Addresses.Find(item.AddressID);
                 context.Addresses.Remove(item);
                 context.SaveChanges();
             }
