@@ -17,6 +17,7 @@ Supplier:
 		Unit Price
 		Quantity/Unit
 */
+// Try to finish Pratice
 from vendor in Suppliers
 select new
 {
