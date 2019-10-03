@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CRUDController.cs" />
+    <Compile Include="BLL\SupplierManager.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\BuildVersion.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Entities\WestWindContext.cs" />
     <Compile Include="Entity Customizations\Address.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadModels\SupplierSummary.cs" />
+    <Compile Include="ReadModels\SupplierProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
