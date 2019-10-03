@@ -10,7 +10,7 @@ using WestWindSystem.ReadModels;
 namespace WestWindSystem.BLL
 {
     [DataObject]
-    class SupplierManager
+    public class SupplierManager
     {
         public List<SupplierSummary> ListSupplierSummary()
         {
@@ -32,6 +32,7 @@ namespace WestWindSystem.BLL
                                             }
                              };
                 return result.ToList();
+
             }
         }
     }
