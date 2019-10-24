@@ -59,7 +59,6 @@
   <ItemGroup>
     <Compile Include="BLL\CRUDController.cs" />
     <Compile Include="BLL\SupplierManager.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\BuildVersion.cs" />
     <Compile Include="Entities\Category.cs" />
