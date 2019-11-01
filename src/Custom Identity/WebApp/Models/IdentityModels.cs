@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Data.Entity; // for the Database.SetInitilizer() method.
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApp.Admin;
+using WebApp.Admin.Security;
 using WebApp.Models;
 
 namespace WebApp.Models
