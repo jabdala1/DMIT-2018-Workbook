@@ -51,7 +51,7 @@ namespace WebApp.Admin.Security
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             // - The ApplicationUserManager is a BLL class in this website's App_Start/IdentityConfig.cs
             var result = userManager.Create(adminUser, "Pa$$w0rd"); // TODO: Move password
-            if (result.Succeeded)
+            if(result.Succeeded)
             {
                 // Get the Id that was generated for the user we created/added
                 var adminId = userManager.FindByName("WebAdmin").Id;
@@ -62,7 +62,7 @@ namespace WebApp.Admin.Security
             // Create the other user accounts for all the people in my Demo database
             var demoManager = new DemoController();
             var people = demoManager.ListPeople();
-            foreach (var person in people)
+            foreach(var person in people)
             {
                 var user = new ApplicationUser
                 {
@@ -72,7 +72,7 @@ namespace WebApp.Admin.Security
                     PersonId = person.PersonID
                 };
                 result = userManager.Create(user, "Pa$$word1");
-                if (result.Succeeded)
+                if(result.Succeeded)
                 {
                     var userId = userManager.FindByName(user.UserName).Id;
                     userManager.AddToRole(userId, "Registered Users");
