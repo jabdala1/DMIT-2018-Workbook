@@ -35,7 +35,7 @@ namespace WebApp.Admin.Security
 
             // TODO: Move these hard-coded security roles to Web.config
             foreach(var role in DefaultSecurityRoles)
-                roleManager.Create(new IdentityRole { Name = "role" });
+                roleManager.Create(new IdentityRole { Name = role });
             #endregion
 
             #region Seed the users
