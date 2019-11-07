@@ -35,6 +35,10 @@ namespace WebApp.Account
                 // To enable password failures to trigger lockout, change to shouldLockout: true
                 var result = signinManager.PasswordSignIn(UserName.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
 
+                var name = UserName.Text;
+                var pass = Password.Text;
+
+
                 switch (result)
                 {
                     case SignInStatus.Success:
