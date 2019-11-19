@@ -58,7 +58,7 @@ namespace WebApp.Sales
                         short quantity;
                         HiddenField prodId = row.FindControl("ProductId") as HiddenField;
                         TextBox qty = row.FindControl("ShipQuantity") as TextBox;
-                        if (prodId != null && qty != null && int.TryParse(qty.Text, out quantity))
+                        if (prodId != null && qty != null && short.TryParse(qty.Text, out quantity))
                         {
                             ShippedItem item = new ShippedItem
                             {
@@ -70,8 +70,11 @@ namespace WebApp.Sales
                     }
                 }
 
-                var controller = new WestWindSystem.BLL.OrderProcessingController();
-                controller.ShipOrder(orderId, shipInfo, goods);
+                MessageUserControl.TryRun(() =>
+                {
+                    var controller = new WestWindSystem.BLL.OrderProcessingController();
+                    controller.ShipOrder(orderId, shipInfo, goods);
+                }, "Order shipment recorded", "The products indetified as shipped are recorded in the database");
             }
         }
     }
