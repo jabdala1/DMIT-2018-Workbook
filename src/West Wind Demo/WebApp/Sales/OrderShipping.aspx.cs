@@ -47,6 +47,31 @@ namespace WebApp.Sales
                 TextBox frieght = e.Item.FindControl("FreightCharge") as TextBox;
                 if (frieght != null && decimal.TryParse(frieght.Text, out price))
                     shipInfo.FreightCharge = price;
+
+                List<ShippedItem> goods = new List<ShippedItem>();
+                GridView gv = e.Item.FindControl("ProductsGridView") as GridView;
+                if (gv != null)
+                {
+                    foreach (GridView row in gv.Rows)
+                    {
+                        // Get the product id and ship qty
+                        short quantity;
+                        HiddenField prodId = row.FindControl("ProductId") as HiddenField;
+                        TextBox qty = row.FindControl("ShipQuantity") as TextBox;
+                        if (prodId != null && qty != null && int.TryParse(qty.Text, out quantity))
+                        {
+                            ShippedItem item = new ShippedItem
+                            {
+                                Product = prodId.Value,
+                                Quantity = quantity
+                            };
+                            goods.Add(item);
+                        }
+                    }
+                }
+
+                var controller = new WestWindSystem.BLL.OrderProcessingController();
+                controller.ShipOrder(orderId, shipInfo, goods);
             }
         }
     }

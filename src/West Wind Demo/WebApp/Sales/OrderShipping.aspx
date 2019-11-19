@@ -44,6 +44,7 @@
                                     <asp:BoundField DataField="OutStanding" HeaderText="Outstanding" />
                                     <asp:TemplateField HeaderText="Ship Quantity">
                                         <ItemTemplate>
+                                            <asp:HiddenField ID="ProductId" runat="server" Value="<%# Item.ProductID %>" />
                                             <asp:TextBox ID="ShipQuantity" runat="server" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
