@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebApp.Admin.Security;
+using WebApp.Admin.Security; // For the Settings class
+using WestWindSystem.BLL;
 using WestWindSystem.DataModels;
 
 namespace WebApp.Sales
@@ -18,25 +19,26 @@ namespace WebApp.Sales
             if(!IsPostBack)
             {
                 // Load up the info on the supplier
-                // TODO: Replce hard-coded supplier ID with the user's supplierID
-                SupplierInfo.Text = "Temp Supplier: ID 2";
+                // TODO: Replace hard-coded supplier ID with the user's supplier ID
+                SupplierInfo.Text = "Temp supplier: ID 2";
+
             }
         }
 
         protected void CurrentOrders_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            if (e.CommandName == "Ship")
+            if(e.CommandName == "Ship")
             {
-                // Gather information from the form to sent to the BLL for shipping
-                // ShipOrder(int orderId, ShippingDirections shipping, List<ShippedItem> items)
+                // Gather information from the form to send to the BLL for shipping
+                // - ShipOrder(int orderId, ShippingDirections shipping, List<ShippedItem> items)
                 int orderId = 0;
-                Label orderIdLabel = e.Item.FindControl("OrderIdLabel") as Label; // Safe cast the Control object to a Label object
-                if (orderIdLabel != null)
-                    orderId = int.Parse(orderIdLabel.Text);
+                Label ordIdLabel = e.Item.FindControl("OrderIdLabel") as Label; // safe cast the Control object to a Label object
+                if (ordIdLabel != null)
+                    orderId = int.Parse(ordIdLabel.Text);
 
-                ShippingDirections shipInfo = new ShippingDirections(); // black object
-                DropDownList shipViaDropDown = e.Item.FindControl("") as DropDownList;
-                if (shipViaDropDown != null) //  If I got the control
+                ShippingDirections shipInfo = new ShippingDirections(); // blank obj
+                DropDownList shipViaDropDown = e.Item.FindControl("ShipperDropDown") as DropDownList;
+                if (shipViaDropDown != null) // if I got the control
                     shipInfo.ShipperId = int.Parse(shipViaDropDown.SelectedValue);
 
                 TextBox tracking = e.Item.FindControl("TrackingCode") as TextBox;
@@ -44,21 +46,21 @@ namespace WebApp.Sales
                     shipInfo.TrackingCode = tracking.Text;
 
                 decimal price;
-                TextBox frieght = e.Item.FindControl("FreightCharge") as TextBox;
-                if (frieght != null && decimal.TryParse(frieght.Text, out price))
+                TextBox freight = e.Item.FindControl("FreightCharge") as TextBox;
+                if (freight != null && decimal.TryParse(freight.Text, out price))
                     shipInfo.FreightCharge = price;
 
                 List<ShippedItem> goods = new List<ShippedItem>();
                 GridView gv = e.Item.FindControl("ProductsGridView") as GridView;
-                if (gv != null)
+                if(gv != null)
                 {
-                    foreach (GridView row in gv.Rows)
+                    foreach(GridViewRow row in gv.Rows)
                     {
-                        // Get the product id and ship qty
+                        // get product id and ship qty
                         short quantity;
                         HiddenField prodId = row.FindControl("ProductId") as HiddenField;
                         TextBox qty = row.FindControl("ShipQuantity") as TextBox;
-                        if (prodId != null && qty != null && short.TryParse(qty.Text, out quantity))
+                        if(prodId != null && qty != null && short.TryParse(qty.Text, out quantity))
                         {
                             ShippedItem item = new ShippedItem
                             {
@@ -72,9 +74,9 @@ namespace WebApp.Sales
 
                 MessageUserControl.TryRun(() =>
                 {
-                    var controller = new WestWindSystem.BLL.OrderProcessingController();
+                    var controller = new OrderProcessingController();
                     controller.ShipOrder(orderId, shipInfo, goods);
-                }, "Order shipment recorded", "The products indetified as shipped are recorded in the database");
+                }, "Order shipment recorded", "The products identified as shipped are recorded in the database");
             }
         }
     }

@@ -10,6 +10,6 @@ namespace WestWindSystem.DataModels
         public string ProductName { get; set; }
         public short Qty { get; set; }
         public string QtyPerUnit { get; set; }
-        public short Outstanding { get; set; } // Calculated as OD.Quantity - Sum(Shipped qty)
+        public short Outstanding { get; set; } // TODO: Calculated as OD.Quantity - Sum(Shipped qty)
     }
 }
